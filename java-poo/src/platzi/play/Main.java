@@ -1,33 +1,34 @@
 package platzi.play;
 
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import platzi.play.content.Movie;
 import platzi.play.platform.User;
+import platzi.play.util.ScannerUtils;
 
 public class Main {
     public static void main(String[] args) {
 
+        String name = ScannerUtils.captureText("Name of the movie");
+        String genre = ScannerUtils.captureText("Genre of the movie");
+        int duration = ScannerUtils.captureNumber("Duration in minutes");
+        double rating = ScannerUtils.captureDecimal("Rate the movie (0 to 5)");
+
         Movie movie = new Movie();
-        movie.title = "Inception";
+        movie.title = name;
         movie.description = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.";
-        movie.duration = 148;
-        movie.genre = "Science Fiction";
-        movie.yearRelease = 2010;
-        movie.rate(4.5);
+        movie.duration = duration;
+        movie.genre = genre;
+        movie.releaseDate = LocalDate.of(2010, 7, 16);
+        movie.rate(rating);
         movie.isAvailable = true;
+
+        System.out.println(movie.getInformation());
 
         User user = new User();
         user.name = "Juan Mendoza";
-
-        user.seeMovie(movie);
-
-        // System.out.println("Hello World");
-
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.println("What's your name?");
-        // String name = scanner.nextLine();
-        // System.out.println("Hello " + name);
+        user.registrationDate = LocalDateTime.now();
 
     }
 }

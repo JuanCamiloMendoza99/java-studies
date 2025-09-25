@@ -21,7 +21,7 @@ public class Movie {
                 "Duration: " + duration + " minutes\n" +
                 "Genre: " + genre + "\n" +
                 "Year of Release: " + releaseDate.getYear() + "\n" +
-                "Rating: " + rating + "\n" +
+                "Rating: " + rating + "/5" + "\n" +
                 "Available: " + (isAvailable ? "Yes" : "No");
     }
 
