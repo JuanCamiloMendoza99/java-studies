@@ -2,7 +2,7 @@ package platzi.play;
 
 import java.util.Scanner;
 
-import platzi.play.contenido.Movie;
+import platzi.play.content.Movie;
 
 public class Main {
     public static void main(String[] args) {

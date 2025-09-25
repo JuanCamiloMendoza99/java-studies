@@ -1,4 +1,4 @@
-package platzi.play.contenido;
+package platzi.play.content;
 
 public class Movie {
     public String title;
