@@ -32,4 +32,8 @@ public class Movie {
         }
     }
 
+    public boolean isPopular() {
+        return this.rating >= 4;
+    }
+
 }
