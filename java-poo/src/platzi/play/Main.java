@@ -3,6 +3,7 @@ package platzi.play;
 import java.util.Scanner;
 
 import platzi.play.content.Movie;
+import platzi.play.platform.User;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,7 +17,10 @@ public class Main {
         movie.rate(4.5);
         movie.isAvailable = true;
 
-        System.out.println(movie.getInformation());
+        User user = new User();
+        user.name = "Juan Mendoza";
+
+        user.seeMovie(movie);
 
         // System.out.println("Hello World");
 
