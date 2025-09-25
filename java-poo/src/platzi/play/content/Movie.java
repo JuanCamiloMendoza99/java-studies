@@ -1,13 +1,15 @@
 package platzi.play.content;
 
+import java.time.LocalDate;
+
 public class Movie {
     public String title;
     public String description;
     public int duration;
     public String genre;
-    public int yearRelease;
     public double rating;
     public boolean isAvailable;
+    public LocalDate releaseDate;
 
     public void play() {
         System.out.println("Playing movie: " + title);
@@ -18,7 +20,7 @@ public class Movie {
                 "Description: " + description + "\n" +
                 "Duration: " + duration + " minutes\n" +
                 "Genre: " + genre + "\n" +
-                "Year of Release: " + yearRelease + "\n" +
+                "Year of Release: " + releaseDate.getYear() + "\n" +
                 "Rating: " + rating + "\n" +
                 "Available: " + (isAvailable ? "Yes" : "No");
     }
