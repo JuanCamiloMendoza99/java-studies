@@ -15,20 +15,13 @@ public class Main {
         int duration = ScannerUtils.captureNumber("Duration in minutes");
         double rating = ScannerUtils.captureDecimal("Rate the movie (0 to 5)");
 
-        Movie movie = new Movie();
-        movie.title = name;
+        Movie movie = new Movie(name, duration, genre, rating);
         movie.description = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.";
-        movie.duration = duration;
-        movie.genre = genre;
-        movie.releaseDate = LocalDate.of(2010, 7, 16);
-        movie.rate(rating);
-        movie.isAvailable = true;
 
         System.out.println(movie.getInformation());
 
-        User user = new User();
-        user.name = "Juan Mendoza";
-        user.registrationDate = LocalDateTime.now();
+        User user = new User("Juan Mendoza");
+        user.seeMovie(movie);
 
     }
 }

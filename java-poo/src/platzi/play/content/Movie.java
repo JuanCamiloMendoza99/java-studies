@@ -11,6 +11,19 @@ public class Movie {
     public boolean isAvailable;
     public LocalDate releaseDate;
 
+    public Movie(String title, int duration, String genre) {
+        this.title = title;
+        this.duration = duration;
+        this.genre = genre;
+        this.isAvailable = true;
+        this.releaseDate = LocalDate.now();
+    }
+
+    public Movie(String title, int duration, String genre, double rating) {
+        this(title, duration, genre);
+        this.rate(rating);
+    }
+
     public void play() {
         System.out.println("Playing movie: " + title);
     }

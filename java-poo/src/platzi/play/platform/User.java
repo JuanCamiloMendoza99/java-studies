@@ -11,6 +11,12 @@ public class User {
     public boolean isActive;
     public LocalDateTime registrationDate;
 
+    public User(String name) {
+        this.name = name;
+        this.isActive = true;
+        this.registrationDate = LocalDateTime.now();
+    }
+
     public void seeMovie(Movie movie) {
         System.out.println(name + " is watching ");
         movie.play();
