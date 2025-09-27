@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import platzi.play.content.Movie;
 
 public class User {
-    public String name;
-    public String email;
-    public String password;
-    public boolean isActive;
-    public LocalDateTime registrationDate;
+    private String name;
+    private String email;
+    private String password;
+    private boolean isActive;
+    private LocalDateTime registrationDate;
 
     public User(String name) {
         this.name = name;
@@ -20,6 +20,38 @@ public class User {
     public void seeMovie(Movie movie) {
         System.out.println(name + " is watching ");
         movie.play();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAvailable(boolean isActive) {
+        this.isActive = isActive;
     }
 
 }
