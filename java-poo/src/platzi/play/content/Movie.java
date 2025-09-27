@@ -3,13 +3,13 @@ package platzi.play.content;
 import java.time.LocalDate;
 
 public class Movie {
-    public String title;
-    public String description;
-    public int duration;
-    public String genre;
-    public double rating;
-    public boolean isAvailable;
-    public LocalDate releaseDate;
+    private String title;
+    private String description;
+    private int duration;
+    private String genre;
+    private double rating;
+    private boolean isAvailable;
+    private LocalDate releaseDate;
 
     public Movie(String title, int duration, String genre) {
         this.title = title;
@@ -49,6 +49,42 @@ public class Movie {
 
     public boolean isPopular() {
         return this.rating >= 4;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
 }
