@@ -18,6 +18,7 @@ public class Main {
     public static void main(String[] args) {
 
         Platform platform = new Platform(APP_NAME);
+        loadMovies(platform);
 
         while (true) {
 
@@ -30,8 +31,6 @@ public class Main {
                         5. Exit
                     """);
 
-            System.out.println("Option: " + option);
-
             switch (option) {
                 case ADD_MOVIE_OPTION -> {
                     String name = ScannerUtils.captureText("Name of the movie");
@@ -40,15 +39,31 @@ public class Main {
                     double rating = ScannerUtils.captureDecimal("Rate the movie (0 to 5)");
                     platform.addContent(new Movie(name, duration, genre, rating));
                 }
+
                 case SHOW_MOVIES_OPTION -> platform.showTitleMovies();
 
                 case SEARCH_MOVIE_OPTION -> {
-                    System.out.println("Search movie by name");
+                    String name = ScannerUtils.captureText("Enter the movie name to search");
+                    Movie movie = platform.getMovieByName(name);
+                    if (movie != null) {
+                        System.out.println(movie.getInformation());
+                        movie.play();
+                    } else {
+                        System.out.println(name + " not found in the platform " + platform.getName());
+                    }
                 }
 
                 case DELETE_MOVIE_OPTION -> {
-                    System.out.println("Delete movie by name");
+                    String name = ScannerUtils.captureText("Enter the movie name to search");
+                    Movie movie = platform.getMovieByName(name);
+                    if (movie != null) {
+                        platform.deleteContent(movie);
+                        System.out.println(name + " has been removed from the platform " + platform.getName());
+                    } else {
+                        System.out.println(name + " not found in the platform " + platform.getName());
+                    }
                 }
+
                 case EXIT_OPTION -> {
                     System.out.println("Exiting...");
                     System.exit(0);
@@ -60,4 +75,18 @@ public class Main {
         }
 
     }
+
+    private static void loadMovies(Platform platform) {
+        platform.addContent(new Movie("Shrek", 90, "Animated", 4.8));
+        platform.addContent(new Movie("Inception", 148, "Science Fiction", 4.9));
+        platform.addContent(new Movie("Titanic", 195, "Drama", 4.6));
+        platform.addContent(new Movie("John Wick", 101, "Action", 4.5));
+        platform.addContent(new Movie("The Conjuring", 112, "Horror", 3.0));
+        platform.addContent(new Movie("Coco", 105, "Animated", 4.7));
+        platform.addContent(new Movie("Interstellar", 169, "Science Fiction", 5));
+        platform.addContent(new Movie("Joker", 122, "Drama", 4.0));
+        platform.addContent(new Movie("Toy Story", 81, "Animated", 4.5));
+        platform.addContent(new Movie("Avengers: Endgame", 181, "Action", 3.9));
+    }
+
 }

@@ -41,7 +41,6 @@ public class Movie {
     public void rate(double newRating) {
         if (newRating >= 0 && newRating <= 5) {
             this.rating = newRating;
-            System.out.println("New rating for " + title + ": " + rating);
         } else {
             System.out.println("Rating must be between 0 and 5.");
         }

@@ -24,8 +24,17 @@ public class Platform {
         }
     }
 
-    public void deleateContent(Movie movie) {
+    public void deleteContent(Movie movie) {
         this.content.remove(movie);
+    }
+
+    public Movie getMovieByName(String name) {
+        for (Movie movie : content) {
+            if (movie.getTitle().equalsIgnoreCase(name)) {
+                return movie;
+            }
+        }
+        return null;
     }
 
     public String getName() {
