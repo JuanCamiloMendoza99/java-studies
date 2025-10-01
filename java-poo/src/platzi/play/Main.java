@@ -11,9 +11,10 @@ public class Main {
 
     public static final int ADD_MOVIE_OPTION = 1;
     public static final int SHOW_MOVIES_OPTION = 2;
-    public static final int SEARCH_MOVIE_OPTION = 3;
-    public static final int DELETE_MOVIE_OPTION = 4;
-    public static final int EXIT_OPTION = 5;
+    public static final int SEARCH_MOVIE_BY_NAME_OPTION = 3;
+    public static final int SEARCH_MOVIE_BY_GENRE_OPTION = 4;
+    public static final int DELETE_MOVIE_OPTION = 5;
+    public static final int EXIT_OPTION = 6;
 
     public static void main(String[] args) {
 
@@ -27,8 +28,9 @@ public class Main {
                         1. Add movie
                         2. Show movies
                         3. Search movie by name
-                        4. Delete movie
-                        5. Exit
+                        4. Search movies by genre
+                        5. Delete movie
+                        6. Exit
                     """);
 
             switch (option) {
@@ -42,7 +44,7 @@ public class Main {
 
                 case SHOW_MOVIES_OPTION -> platform.showTitleMovies();
 
-                case SEARCH_MOVIE_OPTION -> {
+                case SEARCH_MOVIE_BY_NAME_OPTION -> {
                     String name = ScannerUtils.captureText("Enter the movie name to search");
                     Movie movie = platform.getMovieByName(name);
                     if (movie != null) {
@@ -51,6 +53,14 @@ public class Main {
                     } else {
                         System.out.println(name + " not found in the platform " + platform.getName());
                     }
+                }
+
+                case SEARCH_MOVIE_BY_GENRE_OPTION -> {
+                    String genre = ScannerUtils.captureText("Enter the movie genre to search");
+                    platform.getMoviesByGenre(genre).forEach(movie -> {
+                        System.out.println(movie.getInformation() + "\n");
+                        movie.play();
+                    });
                 }
 
                 case DELETE_MOVIE_OPTION -> {

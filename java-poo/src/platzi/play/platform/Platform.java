@@ -19,9 +19,7 @@ public class Platform {
     }
 
     public void showTitleMovies() {
-        for (Movie movie : content) {
-            System.out.println(movie.getTitle());
-        }
+        content.forEach(movie -> System.out.println(movie.getTitle()));
     }
 
     public void deleteContent(Movie movie) {
@@ -29,12 +27,16 @@ public class Platform {
     }
 
     public Movie getMovieByName(String name) {
-        for (Movie movie : content) {
-            if (movie.getTitle().equalsIgnoreCase(name)) {
-                return movie;
-            }
-        }
-        return null;
+        return content.stream()
+                .filter(movie -> movie.getTitle().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Movie> getMoviesByGenre(String genre) {
+        return content.stream()
+                .filter(movie -> movie.getGenre().equalsIgnoreCase(genre))
+                .toList();
     }
 
     public String getName() {
