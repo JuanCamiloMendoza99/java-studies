@@ -9,6 +9,7 @@ import platzi.play.content.Movie;
 import platzi.play.platform.Platform;
 import platzi.play.platform.User;
 import platzi.play.util.ScannerUtils;
+import platzi.play.exception.ExistingMovieException;
 
 public class Main {
 
@@ -48,7 +49,12 @@ public class Main {
                     double rating = ScannerUtils.captureDecimal("Rate the movie (0 to 5)");
                     Language language = ScannerUtils.captureLanguage("Language of the movie");
                     Quality quality = ScannerUtils.captureQuality("Quality of the movie");
-                    platform.addContent(new Movie(name, duration, genre, rating, language, quality));
+
+                    try {
+                        platform.addContent(new Movie(name, duration, genre, rating, language, quality));
+                    } catch (ExistingMovieException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
 
                 case SHOW_MOVIES_OPTION -> {
