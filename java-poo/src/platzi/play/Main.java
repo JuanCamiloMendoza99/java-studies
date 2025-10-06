@@ -2,6 +2,9 @@ package platzi.play;
 
 import java.util.List;
 
+import platzi.play.content.Genre;
+import platzi.play.content.Language;
+import platzi.play.content.Quality;
 import platzi.play.content.Movie;
 import platzi.play.platform.Platform;
 import platzi.play.platform.User;
@@ -40,10 +43,12 @@ public class Main {
             switch (option) {
                 case ADD_MOVIE_OPTION -> {
                     String name = ScannerUtils.captureText("Name of the movie");
-                    String genre = ScannerUtils.captureText("Genre of the movie");
+                    Genre genre = ScannerUtils.captureGenre("Genre of the movie");
                     int duration = ScannerUtils.captureNumber("Duration in minutes");
                     double rating = ScannerUtils.captureDecimal("Rate the movie (0 to 5)");
-                    platform.addContent(new Movie(name, duration, genre, rating));
+                    Language language = ScannerUtils.captureLanguage("Language of the movie");
+                    Quality quality = ScannerUtils.captureQuality("Quality of the movie");
+                    platform.addContent(new Movie(name, duration, genre, rating, language, quality));
                 }
 
                 case SHOW_MOVIES_OPTION -> {
@@ -63,7 +68,7 @@ public class Main {
                 }
 
                 case SEARCH_MOVIE_BY_GENRE_OPTION -> {
-                    String genre = ScannerUtils.captureText("Enter the movie genre to search");
+                    Genre genre = ScannerUtils.captureGenre("Enter the movie genre to search");
                     platform.getMoviesByGenre(genre).forEach(movie -> {
                         System.out.println(movie.getInformation() + "\n");
                         movie.play();
@@ -102,16 +107,16 @@ public class Main {
     }
 
     private static void loadMovies(Platform platform) {
-        platform.addContent(new Movie("Shrek", 90, "Animated", 4.8));
-        platform.addContent(new Movie("Inception", 148, "Science Fiction", 4.9));
-        platform.addContent(new Movie("Titanic", 195, "Drama", 4.6));
-        platform.addContent(new Movie("John Wick", 101, "Action", 4.5));
-        platform.addContent(new Movie("The Conjuring", 112, "Horror", 3.0));
-        platform.addContent(new Movie("Coco", 105, "Animated", 4.7));
-        platform.addContent(new Movie("Interstellar", 169, "Science Fiction", 5));
-        platform.addContent(new Movie("Joker", 122, "Drama", 4.0));
-        platform.addContent(new Movie("Toy Story", 81, "Animated", 4.5));
-        platform.addContent(new Movie("Avengers: Endgame", 181, "Action", 3.9));
+        platform.addContent(new Movie("Shrek", 90, Genre.ANIMATION, 4.8, Language.ENGLISH, Quality.HD));
+        platform.addContent(new Movie("Inception", 148, Genre.SCI_FI, 4.9, Language.ENGLISH, Quality.FULL_HD));
+        platform.addContent(new Movie("Titanic", 195, Genre.DRAMA, 4.6, Language.ENGLISH, Quality.HD));
+        platform.addContent(new Movie("John Wick", 101, Genre.ACTION, 4.5, Language.ENGLISH, Quality.HD));
+        platform.addContent(new Movie("The Conjuring", 112, Genre.HORROR, 3.0, Language.ENGLISH, Quality.HD));
+        platform.addContent(new Movie("Coco", 105, Genre.ANIMATION, 4.7, Language.ENGLISH, Quality.HD));
+        platform.addContent(new Movie("Interstellar", 169, Genre.SCI_FI, 5, Language.ENGLISH, Quality.UHD_4K));
+        platform.addContent(new Movie("Joker", 122, Genre.DRAMA, 4.0, Language.ENGLISH, Quality.HD));
+        platform.addContent(new Movie("Toy Story", 81, Genre.ANIMATION, 4.5, Language.ENGLISH, Quality.HD));
+        platform.addContent(new Movie("Avengers: Endgame", 181, Genre.ACTION, 3.9, Language.ENGLISH, Quality.HD));
     }
 
 }

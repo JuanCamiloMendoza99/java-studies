@@ -6,21 +6,25 @@ public class Movie {
     private String title;
     private String description;
     private int duration;
-    private String genre;
+    private Genre genre;
     private double rating;
     private boolean isAvailable;
     private LocalDate releaseDate;
+    private Language language;
+    private Quality quality;
 
-    public Movie(String title, int duration, String genre) {
+    public Movie(String title, int duration, Genre genre, Language language, Quality quality) {
         this.title = title;
         this.duration = duration;
         this.genre = genre;
         this.isAvailable = true;
         this.releaseDate = LocalDate.now();
+        this.language = language;
+        this.quality = quality;
     }
 
-    public Movie(String title, int duration, String genre, double rating) {
-        this(title, duration, genre);
+    public Movie(String title, int duration, Genre genre, double rating, Language language, Quality quality) {
+        this(title, duration, genre, language, quality);
         this.rate(rating);
     }
 
@@ -35,7 +39,9 @@ public class Movie {
                 "Genre: " + genre + "\n" +
                 "Year of Release: " + releaseDate.getYear() + "\n" +
                 "Rating: " + rating + "/5" + "\n" +
-                "Available: " + (isAvailable ? "Yes" : "No");
+                "Available: " + (isAvailable ? "Yes" : "No") + "\n" +
+                "Language: " + language + "\n" +
+                "Quality: " + quality;
     }
 
     public void rate(double newRating) {
@@ -62,7 +68,7 @@ public class Movie {
         return duration;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
