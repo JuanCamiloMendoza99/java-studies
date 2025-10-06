@@ -1,5 +1,7 @@
 package platzi.play;
 
+import java.util.List;
+
 import platzi.play.content.Movie;
 import platzi.play.platform.Platform;
 import platzi.play.platform.User;
@@ -13,8 +15,9 @@ public class Main {
     public static final int SHOW_MOVIES_OPTION = 2;
     public static final int SEARCH_MOVIE_BY_NAME_OPTION = 3;
     public static final int SEARCH_MOVIE_BY_GENRE_OPTION = 4;
-    public static final int DELETE_MOVIE_OPTION = 5;
-    public static final int EXIT_OPTION = 6;
+    public static final int GET_MOVIES_ORDERED_BY_RATING = 5;
+    public static final int DELETE_MOVIE_OPTION = 6;
+    public static final int EXIT_OPTION = 7;
 
     public static void main(String[] args) {
 
@@ -29,8 +32,9 @@ public class Main {
                         2. Show movies
                         3. Search movie by name
                         4. Search movies by genre
-                        5. Delete movie
-                        6. Exit
+                        5. Get movies ordered by rating
+                        6. Delete movie
+                        7. Exit
                     """);
 
             switch (option) {
@@ -42,7 +46,10 @@ public class Main {
                     platform.addContent(new Movie(name, duration, genre, rating));
                 }
 
-                case SHOW_MOVIES_OPTION -> platform.showTitleMovies();
+                case SHOW_MOVIES_OPTION -> {
+                    List<String> titles = platform.getTitles();
+                    titles.forEach(System.out::println);
+                }
 
                 case SEARCH_MOVIE_BY_NAME_OPTION -> {
                     String name = ScannerUtils.captureText("Enter the movie name to search");
@@ -60,6 +67,14 @@ public class Main {
                     platform.getMoviesByGenre(genre).forEach(movie -> {
                         System.out.println(movie.getInformation() + "\n");
                         movie.play();
+                    });
+                }
+
+                case GET_MOVIES_ORDERED_BY_RATING -> {
+                    int max_movies = ScannerUtils.captureNumber("How many top rated movies do you want to see?");
+
+                    platform.getPopularMovies(max_movies).forEach(movie -> {
+                        System.out.println(movie.getInformation() + "\n");
                     });
                 }
 
