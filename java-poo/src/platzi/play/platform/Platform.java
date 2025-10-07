@@ -1,6 +1,7 @@
 package platzi.play.platform;
 
 import platzi.play.content.Movie;
+import platzi.play.content.SummaryContent;
 import platzi.play.content.Genre;
 import platzi.play.exception.ExistingMovieException;
 
@@ -28,6 +29,18 @@ public class Platform {
 
     public List<String> getTitles() {
         return content.stream().map(Movie::getTitle).toList();
+    }
+
+    public List<SummaryContent> getSummaries() {
+        return content.stream()
+                .map(movie -> new SummaryContent(
+                        movie.getTitle(),
+                        movie.getGenre(),
+                        movie.getDuration(),
+                        movie.getRating(),
+                        movie.getLanguage(),
+                        movie.getQuality()))
+                .toList();
     }
 
     public void deleteContent(Movie movie) {

@@ -76,6 +76,14 @@ public class Movie {
         return rating;
     }
 
+    public Language getLanguage() {
+        return language;
+    }
+
+    public Quality getQuality() {
+        return quality;
+    }
+
     public boolean isAvailable() {
         return isAvailable;
     }

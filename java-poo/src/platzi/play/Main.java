@@ -5,6 +5,7 @@ import java.util.List;
 import platzi.play.content.Genre;
 import platzi.play.content.Language;
 import platzi.play.content.Quality;
+import platzi.play.content.SummaryContent;
 import platzi.play.content.Movie;
 import platzi.play.platform.Platform;
 import platzi.play.platform.User;
@@ -58,7 +59,7 @@ public class Main {
                 }
 
                 case SHOW_MOVIES_OPTION -> {
-                    List<String> titles = platform.getTitles();
+                    List<SummaryContent> titles = platform.getSummaries();
                     titles.forEach(System.out::println);
                 }
 
